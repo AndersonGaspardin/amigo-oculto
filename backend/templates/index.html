@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Amigo Oculto 🎄</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="christmas-bg">
+
+    <div class="card">
+        <h1>Amigo Oculto 🎅🎁</h1>
+
+        <form action="/sortear" method="post">
+
+            <h2>Participantes</h2>
+            <textarea name="participants" placeholder="Digite um nome por linha" required></textarea>
+
+            <h2>Sugestão de presente</h2>
+            <input type="text" name="gift_suggestion" placeholder="Ex: livro, chocolate, camiseta">
+
+            <h2>Regras</h2>
+
+            <label>Preço mínimo:</label>
+            <input type="text" name="price" placeholder="Ex: R$50">
+
+            <label>Horário:</label>
+            <input type="text" name="time" placeholder="Ex: 20h">
+
+            <label>Local:</label>
+            <input type="text" name="place" placeholder="Ex: Casa do João">
+
+            <button type="submit">Sortear 🎄</button>
+        </form>
+    </div>
+
+</body>
+</html>

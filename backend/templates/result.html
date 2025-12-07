@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Links Secretos 🎁</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="christmas-bg">
+
+    <div class="card">
+        <h1>Links Secretos do Amigo Oculto 🎄</h1>
+
+        <p>Envie o link de cada pessoa apenas para ela.</p>
+
+        <ul class="secret-list">
+            {% for name in names %}
+                <li>
+                    <a href="/reveal/{{ name }}" target="_blank">
+                        🔗 {{ name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a class="back" href="/">Voltar</a>
+    </div>
+
+</body>
+</html>
