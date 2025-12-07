@@ -9,6 +9,9 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+# armazenamento temporário dos pares sorteados
+results_cache = {}
+
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
@@ -28,20 +31,51 @@ async def sortear(
     shuffled = names[:]
     random.shuffle(shuffled)
 
-    # se alguém tirar ele mesmo, embaralha novamente
+    # evitar auto-sorteio
     while any(a == b for a, b in zip(names, shuffled)):
         random.shuffle(shuffled)
 
-    pairs = list(zip(names, shuffled))
+    pairs = dict(zip(names, shuffled))
+
+    # armazenar cache temporário
+    global results_cache
+    results_cache = {
+        "pairs": pairs,
+        "gift_suggestion": gift_suggestion,
+        "price": price,
+        "time": time,
+        "place": place,
+    }
 
     return templates.TemplateResponse(
         "result.html",
         {
             "request": request,
-            "pairs": pairs,
-            "gift_suggestion": gift_suggestion,
+            "names": names,
+        }
+    )
+
+
+@app.get("/reveal/{person}", response_class=HTMLResponse)
+async def reveal(request: Request, person: str):
+    global results_cache
+
+    giver = person
+    receiver = results_cache["pairs"].get(person)
+    gift = results_cache["gift_suggestion"]
+    price = results_cache["price"]
+    time = results_cache["time"]
+    place = results_cache["place"]
+
+    return templates.TemplateResponse(
+        "reveal.html",
+        {
+            "request": request,
+            "giver": giver,
+            "receiver": receiver,
+            "gift": gift,
             "price": price,
             "time": time,
-            "place": place
+            "place": place,
         }
     )
