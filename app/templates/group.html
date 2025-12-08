@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Grupo: {{ group.name }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="christmas-bg">
+<div class="card">
+
+<h1>🎁 Grupo: {{ group.name }}</h1>
+
+<p><strong>Preço mínimo:</strong> {{ group.price or "—" }}</p>
+<p><strong>Horário:</strong> {{ group.time or "—" }}</p>
+<p><strong>Local:</strong> {{ group.place or "—" }}</p>
+
+<hr>
+
+<h2>Participantes</h2>
+
+<ul class="participant-list">
+    {% for p in participants %}
+        <li>
+            {{ p.name }}
+            {% if draws_exist %}
+                — <a href="/draws/result/{{ p.secret_token }}" target="_blank">🔗 Ver resultado</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<form action="/participants/add/{{ group.id }}" method="post" class="form">
+    <h3>Adicionar participante</h3>
+    <input name="name" placeholder="Nome" required>
+    <input name="suggestion" placeholder="Sugestão de presente (opcional)">
+    <button type="submit">Adicionar</button>
+</form>
+
+<hr>
+
+{% if not draws_exist %}
+    <form action="/draws/run/{{ group.id }}" method="get">
+        <button type="submit" class="btn-primary">🎲 Realizar Sorteio</button>
+    </form>
+{% else %}
+    <p class="success">✔ Sorteio realizado!</p>
+{% endif %}
+
+<p><a href="/">← Voltar</a></p>
+
+</div>
+</body>
+</html>

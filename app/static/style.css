@@ -1,0 +1,39 @@
+body.christmas-bg {
+    background: url('/static/christmas-bg.jpg') center/cover no-repeat fixed;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+h1, h2, h3 {
+    color: #b30000;
+}
+
+button {
+    padding: 10px 20px;
+    background: #b30000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #7a0000;
+}
+
+.groups-list li, .participant-list li {
+    margin: 6px 0;
+}
+
+.highlight {
+    color: green;
+    font-size: 24px;
+}

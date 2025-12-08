@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Seu Amigo Oculto</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="christmas-bg">
+<div class="card">
+
+<h1>🎅 Seu Amigo Oculto</h1>
+
+<h2>Olá, {{ giver.name }}!</h2>
+
+<p>Você tirou:</p>
+
+<h2 class="highlight">🎁 {{ receiver.name }}</h2>
+
+{% if receiver.suggestion %}
+<p><strong>Sugestão de presente:</strong> {{ receiver.suggestion }}</p>
+{% else %}
+<p><em>Nenhuma sugestão informada.</em></p>
+{% endif %}
+
+<hr>
+
+<h3>Regras do grupo:</h3>
+
+<p><strong>Preço mínimo:</strong> {{ group.price or "—" }}</p>
+<p><strong>Horário:</strong> {{ group.time or "—" }}</p>
+<p><strong>Local:</strong> {{ group.place or "—" }}</p>
+
+</div>
+</body>
+</html>

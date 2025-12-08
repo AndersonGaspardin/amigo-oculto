@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Participante Adicionado</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="christmas-bg">
+<div class="card">
+
+    <h1>🎉 Participante adicionado!</h1>
+
+    <p><strong>{{ participant.name }}</strong> foi incluído no grupo:</p>
+
+    <h2>🎁 {{ group.name }}</h2>
+
+    {% if participant.suggestion %}
+        <p><strong>Sugestão de presente:</strong> {{ participant.suggestion }}</p>
+    {% else %}
+        <p><em>Nenhuma sugestão de presente informada.</em></p>
+    {% endif %}
+
+    <hr>
+
+    <a href="/groups/{{ group.id }}">
+        <button>← Voltar ao grupo</button>
+    </a>
+
+</div>
+</body>
+</html>

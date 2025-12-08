@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>🎄 Amigo Oculto</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="christmas-bg">
+<div class="card">
+    <h1>🎄 Amigo Oculto</h1>
+
+    <section>
+        <h2>Criar novo grupo</h2>
+
+        <form action="/groups" method="post" class="form">
+            <input name="name" placeholder="Nome do grupo (ex: Natal 2025)" required>
+            <input name="price" placeholder="Preço mínimo sugerido (ex: R$50)">
+            <input name="time" placeholder="Horário (ex: 20:00)">
+            <input name="place" placeholder="Local (ex: Casa do João)">
+            <button type="submit">Criar Grupo</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Grupos criados</h2>
+        {% if groups %}
+            <ul class="groups-list">
+                {% for g in groups %}
+                    <li>
+                        <a href="/groups/{{ g.id }}">
+                            🎁 {{ g.name }} — criado em {{ g.created_at.strftime('%d/%m/%Y %H:%M') }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum grupo criado ainda.</p>
+        {% endif %}
+    </section>
+
+    <p class="muted">
+        Após criar um grupo, adicione participantes e sorteie.<br>
+        Cada pessoa terá um link secreto!
+    </p>
+</div>
+</body>
+</html>
